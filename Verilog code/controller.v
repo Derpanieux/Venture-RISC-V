@@ -195,6 +195,20 @@ module controller (inst, zero,
 								mem_write = 0; // do not write to memory
 							end
 
+							
+			//FENCE instruction
+			7'b0001111: begin
+								//this implementation treats FENCE as a NOP
+								imm = 32'hx;
+								reg_write = 0; //do not write to reg
+								reg_wd_mux = 2'hx; //does not matter what write data or ALU does
+								ALU_op = 4'hx;
+								ALU_A_mux = 2'hx;
+								ALU_B_mux = 2'hx;
+								pc_offset_mux = 0; //add 4 to program counter
+								mem_write = 0; //do not write to mem
+							end
+							
 			7'b0000000:	begin		
 								imm = 32'hx;
 								reg_write = 1'hx;
